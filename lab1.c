@@ -15,8 +15,8 @@ int main ()
   char str[LEN];
   FILE *file_ptr;
   file_ptr = fopen("new_file.txt", "r+a") ;
- // r,   w,    a,      r+, w+, a+,  rb,          wb
- //read, write, +text,    ,   ,   , read binary, write binary
+ // r,    w,     a,     r+,    w+,       a+,       rb,          wb
+ // read, write, +text, read+, write+,   +text,    read binary, write binary
 
 
   if(file_ptr!= NULL)
