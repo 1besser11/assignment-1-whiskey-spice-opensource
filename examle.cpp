@@ -10,4 +10,5 @@ int main(void)
 {
     printf("hello");
     system("pause");
+    
 }
