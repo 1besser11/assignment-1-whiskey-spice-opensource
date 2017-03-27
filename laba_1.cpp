@@ -54,7 +54,7 @@ k1 = 0;
 
 
 fclose(f);
-
+int prpr = 4;
 team temp;
 for(int i = 0; i < 20;i++)
     {            
@@ -71,12 +71,12 @@ for(int i = 0; i < 20;i++)
 
     for(int i =20; i>0;i--)
     cout<<i<<t[i].name<<t[i].points<<endl;
+int k = 0;
 
-
-FILE *g=fopen("result.csv","w");
- for(int i =20, k=0; i>0;i--,k++){
-fprintf(g,"%i,%s,%i\n",k+1, t[i].name, t[i].points);
+FILE *gg=fopen("result.csv","w");
+ for(int ii = 20, kk=0; ii>0;i--,kk++){
+fprintf(gg,"%i,%s,%i\n",kk+1, t[ii].name, t[ii].points);
 }
-fprintf(g, "EOF");
-fclose(g);
+fclose(gg);
+system("pause");
 }
