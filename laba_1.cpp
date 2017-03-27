@@ -14,7 +14,7 @@ struct team{
 
 int main()
 {
-    FILE *f = fopen("premier_league.csv", "r");
+    FILE *f = fopen("/home/andrey/Documents/labs(univer)/premier_league.csv", "r");
     if (f==NULL)cout<<"error";
     char delim1 = ',';
     char delim2 = '\n';
@@ -73,8 +73,8 @@ for(int i = 0; i < 20;i++)
     cout<<i<<t[i].name<<t[i].points<<endl;
 int k = 0;
 
-FILE *gg=fopen("result.csv","w");
- for(int ii = 20, kk=0; ii>0;i--,kk++){
+FILE *gg=fopen("/home/andrey/Documents/labs(univer)/result.csv","w");
+ for(int ii = 20, kk=0; ii>0;ii--,kk++){
 fprintf(gg,"%i,%s,%i\n",kk+1, t[ii].name, t[ii].points);
 }
 fclose(gg);
