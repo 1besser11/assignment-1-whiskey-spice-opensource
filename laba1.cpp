@@ -4,11 +4,9 @@
  *
 */
 #include <iostream>
-#include <fstream>
+#include<fstream>
 
 using namespace std;
-
-
 struct Team
 {
     string name;
@@ -40,14 +38,17 @@ Team* input()
 {
     ifstream fin("premier_league.csv");
     int a;
-    char c;
-    fin >> a; fin>>c;
+    fin >> a;
     Team *ptr = new Team[a];
     for(int i = 0; i < a; ++i)
     {
-<<<<<<< HEAD
         getline(fin,ptr[i].name, ',');
         getline(fin,ptr[i].result, '\n');
+    }
+    for(int i = 0; i < a; ++i)
+    {
+        cout << ptr[i].name ;
+        cout << ptr[i].result << endl;
     }
     return ptr;
 }
@@ -56,20 +57,6 @@ void sort(Team * ptr,int a)
 {
     int match = 10;
     for(int i = 0; i < a; ++i)
-=======
-   fs.getline(mass[i], len , '\n');
-   cout<< mass[i]<<endl;
-   }
- for (int i=1;i<strings;i++)
- {   
-        APL[i].Team = strtok(mass[i],",");
-        cout<<APL[i].Team<<endl;   
- }
-/*
- for(int k=0;k<10;k++)
- {
-    while(p!=EOF  &&(p =fgetc(f))!=delim1  &&  p !=delim2 ) 
->>>>>>> 1012a8a0d0a89370d66243ee55ae1d7960b490d6
     {
         for(int j = 0; j < 40 ; j += 4)
         {
@@ -77,9 +64,11 @@ void sort(Team * ptr,int a)
                 ptr[i].point += 3;
             if((int)ptr[i].result[j] == (int)ptr[i].result[j+2])
                 ++ptr[i].point;
+            cout << ptr[i].point << "  ";
 
 
         }
+        cout << ptr[i].name << "  " <<ptr[i].point << endl;
     }
     for(int i = 0 ; i < a -1 ; i++ )
     {
@@ -93,8 +82,6 @@ void sort(Team * ptr,int a)
             }
         }
     }
-
-   // cout<<a<<ptr[1].name<<"\n\n";
     for (int i = 0; i < a; i++)
      {
 	 	 cout << ptr[i].name << "  " <<ptr[i].point << endl;
@@ -107,7 +94,7 @@ void sort(Team * ptr,int a)
     fout.open("results.csv", ios_base::out);
     for (int g = 0; g < a; g++)
      {
-	 	fout << ptr[g].name << "," <<ptr[g].point << endl;
+	 	fout << ptr[g].name << "  " <<ptr[g].point << endl;
  	 }
 	fout.close();
 }
