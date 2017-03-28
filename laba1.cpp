@@ -13,43 +13,43 @@ struct Team
     string result;
     int point;
 };
-int  input_count();
-void sort(Team * ,int);
+int  Input_Count();
+void Sorting(Team * ,int);
 Team* input();
-void out(Team * ptr, int a);
+void Output(Team * ptr, int a);
 int main(int argc, char *argv[])
 {
-	int count = input_count();
+	int count = Input_Count();
     Team * ptr = input();
-    sort(ptr, count);
-	out(ptr, count);
+    Sorting(ptr, count);
+	Output(ptr, count);
     return 0;
 }
 
-int input_count()
+int Input_Count()
 {
-	ifstream fin("premier_league.csv");
+	ifstream Input_stream("premier_league.csv");
     int a;
-    fin >> a;
+    Input_stream >> a;
 	return a;
 }
 
 Team* input()
 {
-    ifstream fin("premier_league.csv");
+    ifstream Input_stream("premier_league.csv");
     int a;char c;
-    fin >> a; fin>>c ;
+    Input_stream >> a; Input_stream>>c ;
     Team *ptr = new Team[a];
     for(int i = 0; i < a; ++i)
     {
-        getline(fin,ptr[i].name, ',');
-        getline(fin,ptr[i].result, '\n');
+        getline(Input_stream,ptr[i].name, ',');
+        getline(Input_stream,ptr[i].result, '\n');
     }
    
     return ptr;
 }
 
-void sort(Team * ptr,int a)
+void Sorting(Team * ptr,int a)
 {
     int match = 10;
     for(int i = 0; i < a; ++i)
@@ -79,17 +79,16 @@ void sort(Team * ptr,int a)
     
  }
  
- void out(Team * ptr, int a)
+ void Output(Team * ptr, int a)
  {
-      for (int i = 0; i < a; i++)
-     {
+    for (int i = 0; i < a; i++)
+    {
 	 	 cout << ptr[i].name << "  " <<ptr[i].point << endl;
  	}
-	ofstream fout;
-    fout.open("results.csv", ios_base::out);
+	ofstream Output_Stream("results.csv", ios_base::out);
     for (int g = 0; g < a; g++)
      {
-	 	fout << ptr[g].name << "  " <<ptr[g].point << endl;
+	 	Output_Stream << ptr[g].name << "  " <<ptr[g].point << endl;
  	 }
-	fout.close();
+	Output_Stream.close();
 }
