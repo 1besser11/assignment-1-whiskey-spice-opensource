@@ -20,12 +20,19 @@ int main()
     char delim2 = '\n';
     char match[3];
     int number = 0;
+    char *name = new char;
+    char *n = new char;
     char p;
     char score[3];
-    while((p = fgetc(f))!=delim2 ) {
-    }
-    team *t = new team;
     int i = 0;
+while((p = fgetc(f))!=delim2 ) 
+{
+    
+//n[i++]=p;
+}
+    team *t = new team;
+   i = 0;
+    ;
     while(p!=EOF){
         while((p=fgetc(f))!=delim1 && p!=EOF) 
         {
@@ -68,15 +75,17 @@ for(int i = 0; i < 20;i++)
             }
         }
     }
-
+cout<<endl<<endl;
     for(int i =20; i>0;i--)
     cout<<i<<t[i].name<<t[i].points<<endl;
+    cout<<endl<<endl;
 int k = 0;
-
-FILE *gg=fopen("/home/andrey/Documents/labs(univer)/result.csv","w");
- for(int ii = 20, kk=0; ii>0;ii--,kk++){
-fprintf(gg,"%i,%s,%i\n",kk+1, t[ii].name, t[ii].points);
+//char hhh[10000];
+FILE *g=fopen("/home/andrey/Documents/labs(univer)/result.csv","w");
+cout<<"   ";
+char hhh[10000];
+ for(int i =20, k=0; i>0;i--,k++){
+fprintf(g,"%i,%s,%i\n",k+1, t[i].name, t[i].points);
 }
-fclose(gg);
-system("pause");
+fclose(g);
 }
