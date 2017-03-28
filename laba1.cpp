@@ -1,3 +1,4 @@
+//Моя
 #include <stdio.h>
 #include <fstream>
 #include <iostream>
@@ -13,6 +14,7 @@ typedef struct
     char* Team;
 }Table;
 Table APL[20];
+char temp;
 char* score;
 
 int main()
@@ -26,9 +28,9 @@ if(!fs)
 
 else{
  
- for(int i=0; i<strings;i++)
+ for(int i=0; i<=strings;i++)
  {
-   if(mass[i]!="\0")
+   if(!fs.eof())
     {
    fs.getline(mass[i], len , '\n');
    cout<< mass[i]<<endl;
@@ -39,7 +41,24 @@ else{
         APL[i].Team = strtok(mass[i],",");
         cout<<APL[i].Team<<endl;   
  }
- 
+/*
+ for(int k=0;k<10;k++)
+ {
+    while(p!=EOF  &&(p =fgetc(f))!=delim1  &&  p !=delim2 ) 
+    {
+        score[k1++] = p;
+    }
+
+if(score[0]>score[2])
+t[number].points +=3;
+else if(score[0]==score[2])
+t[number].points += 1;
+k1 = 0;
+    }
+   if (p!=EOF) number++;
+        
+}*/
+
 
  fs.close();
  return 0;
