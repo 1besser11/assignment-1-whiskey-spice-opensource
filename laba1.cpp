@@ -45,6 +45,7 @@ Team* input()
     Team *ptr = new Team[a];
     for(int i = 0; i < a; ++i)
     {
+<<<<<<< HEAD
         getline(fin,ptr[i].name, ',');
         getline(fin,ptr[i].result, '\n');
     }
@@ -55,6 +56,20 @@ void sort(Team * ptr,int a)
 {
     int match = 10;
     for(int i = 0; i < a; ++i)
+=======
+   fs.getline(mass[i], len , '\n');
+   cout<< mass[i]<<endl;
+   }
+ for (int i=1;i<strings;i++)
+ {   
+        APL[i].Team = strtok(mass[i],",");
+        cout<<APL[i].Team<<endl;   
+ }
+/*
+ for(int k=0;k<10;k++)
+ {
+    while(p!=EOF  &&(p =fgetc(f))!=delim1  &&  p !=delim2 ) 
+>>>>>>> 1012a8a0d0a89370d66243ee55ae1d7960b490d6
     {
         for(int j = 0; j < 40 ; j += 4)
         {
