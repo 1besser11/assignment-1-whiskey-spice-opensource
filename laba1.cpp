@@ -34,8 +34,7 @@ else{
     {
    fs.getline(mass[i], len , '\n');
    cout<< mass[i]<<endl;
-    }
- }
+   }
  for (int i=1;i<strings;i++)
  {   
         APL[i].Team = strtok(mass[i],",");
