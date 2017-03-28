@@ -37,19 +37,15 @@ int input_count()
 Team* input()
 {
     ifstream fin("premier_league.csv");
-    int a;
-    fin >> a;
+    int a;char c;
+    fin >> a; fin>>c ;
     Team *ptr = new Team[a];
     for(int i = 0; i < a; ++i)
     {
         getline(fin,ptr[i].name, ',');
         getline(fin,ptr[i].result, '\n');
     }
-    for(int i = 0; i < a; ++i)
-    {
-        cout << ptr[i].name ;
-        cout << ptr[i].result << endl;
-    }
+   
     return ptr;
 }
 
@@ -63,12 +59,10 @@ void sort(Team * ptr,int a)
             if((int)ptr[i].result[j] > (int)ptr[i].result[j+2])
                 ptr[i].point += 3;
             if((int)ptr[i].result[j] == (int)ptr[i].result[j+2])
-                ++ptr[i].point;
-            cout << ptr[i].point << "  ";
-
+                ++ptr[i].point;           
 
         }
-        cout << ptr[i].name << "  " <<ptr[i].point << endl;
+        
     }
     for(int i = 0 ; i < a -1 ; i++ )
     {
@@ -82,14 +76,15 @@ void sort(Team * ptr,int a)
             }
         }
     }
-    for (int i = 0; i < a; i++)
-     {
-	 	 cout << ptr[i].name << "  " <<ptr[i].point << endl;
- 	}
+    
  }
  
  void out(Team * ptr, int a)
  {
+      for (int i = 0; i < a; i++)
+     {
+	 	 cout << ptr[i].name << "  " <<ptr[i].point << endl;
+ 	}
 	ofstream fout;
     fout.open("results.csv", ios_base::out);
     for (int g = 0; g < a; g++)
