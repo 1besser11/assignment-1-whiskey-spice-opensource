@@ -5,7 +5,7 @@
  */
 #include <iostream>
 #include <fstream>
-#include <math.h>
+//#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -43,7 +43,7 @@ int input_count()
 
 
 
-    cout << lines;
+    //cout << lines;
     fclose(fp);
     return lines;
     
@@ -67,7 +67,7 @@ Team* input(int count)
 
     for(int i = 0; i < count; ++i)
     {
-        
+        ptr[i].point = 0;
         getline(f,ptr[i].name, ',');
         getline(f,ptr[i].result, '\n');
     }
@@ -118,3 +118,4 @@ void sort(Team * ptr,int a)
  	 }
 	fout.close();
 }
+
