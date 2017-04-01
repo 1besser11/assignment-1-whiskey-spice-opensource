@@ -2,9 +2,13 @@
  *
  * by Andrey and Slavick
  *
-*/
+ */
 #include <iostream>
-#include<fstream>
+#include <fstream>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 
 using namespace std;
 struct Team
@@ -13,43 +17,64 @@ struct Team
     string result;
     int point;
 };
-int  Input_Count();
-void Sorting(Team * ,int);
-Team* input();
-void Output(Team * ptr, int a);
+int  input_count();
+void sort(Team * ,int);
+Team* input(int);
+void out(Team * ptr, int a);
 int main(int argc, char *argv[])
 {
-	int count = Input_Count();
-    Team * ptr = input();
-    Sorting(ptr, count);
-	Output(ptr, count);
+	int count = input_count();
+    Team * ptr = input(count);
+    sort(ptr, count);
+	out(ptr, count);
     return 0;
 }
 
-int Input_Count()
+int input_count()
 {
-	ifstream Input_stream("premier_league.csv");
-    int a;
-    Input_stream >> a;
-	return a;
+    int lines = 0;
+    char s;
+    FILE *fp = fopen("premier_league.csv","r");
+    while((s=fgetc(fp))!=EOF)
+    {
+        if(s == '\n')
+        lines++;
+    }
+
+
+
+    cout << lines;
+    fclose(fp);
+    return lines;
+    
 }
 
-Team* input()
+/*int input_count()
 {
-    ifstream Input_stream("premier_league.csv");
-    int a;char c;
-    Input_stream >> a; Input_stream>>c ;
+	ifstream fin("premier_league.csv");
+    int a;
+    fin >> a;
+	return a;
+}*/
+
+Team* input(int count)
+{
+    ifstream f("premier_league.csv");
+    int a;
+    char  b;
+    f >> a;f >>b;
     Team *ptr = new Team[a];
-    for(int i = 0; i < a; ++i)
+
+    for(int i = 0; i < count; ++i)
     {
-        getline(Input_stream,ptr[i].name, ',');
-        getline(Input_stream,ptr[i].result, '\n');
+        
+        getline(f,ptr[i].name, ',');
+        getline(f,ptr[i].result, '\n');
     }
-   
     return ptr;
 }
 
-void Sorting(Team * ptr,int a)
+void sort(Team * ptr,int a)
 {
     int match = 10;
     for(int i = 0; i < a; ++i)
@@ -58,11 +83,12 @@ void Sorting(Team * ptr,int a)
         {
             if((int)ptr[i].result[j] > (int)ptr[i].result[j+2])
                 ptr[i].point += 3;
-            if((int)ptr[i].result[j] == (int)ptr[i].result[j+2])
-                ++ptr[i].point;           
+            else if((int)ptr[i].result[j] == (int)ptr[i].result[j+2])
+                ++ptr[i].point;
+
 
         }
-        
+       // cout << ptr[i].name << "  " <<ptr[i].point << endl;
     }
     for(int i = 0 ; i < a -1 ; i++ )
     {
@@ -76,19 +102,19 @@ void Sorting(Team * ptr,int a)
             }
         }
     }
-    
- }
- 
- void Output(Team * ptr, int a)
- {
     for (int i = 0; i < a; i++)
-    {
+     {
 	 	 cout << ptr[i].name << "  " <<ptr[i].point << endl;
  	}
-	ofstream Output_Stream("results.csv", ios_base::out);
+ }
+ 
+ void out(Team * ptr, int a)
+ {
+	ofstream fout;
+    fout.open("results.csv", ios_base::out);
     for (int g = 0; g < a; g++)
      {
-	 	Output_Stream << ptr[g].name << "  " <<ptr[g].point << endl;
+	 	fout << ptr[g].name << "," <<ptr[g].point << endl;
  	 }
-	Output_Stream.close();
+	fout.close();
 }
