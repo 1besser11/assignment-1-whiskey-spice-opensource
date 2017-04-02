@@ -1,16 +1,14 @@
 /*
- *
  * by Andrey and Slavick
- *
  */
 #include <iostream>
 #include <fstream>
-//#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string>
 
 using namespace std;
+
 struct Team
 {
     string name;
@@ -40,22 +38,9 @@ int input_count()
         if(s == '\n')
         lines++;
     }
-
-
-
-    //cout << lines;
     fclose(fp);
-    return lines;
-    
+    return lines;    
 }
-
-/*int input_count()
-{
-	ifstream fin("premier_league.csv");
-    int a;
-    fin >> a;
-	return a;
-}*/
 
 Team* input(int count)
 {
@@ -67,9 +52,11 @@ Team* input(int count)
 
     for(int i = 0; i < count; ++i)
     {
+    
         ptr[i].point = 0;
         getline(f,ptr[i].name, ',');
         getline(f,ptr[i].result, '\n');
+        
     }
     return ptr;
 }
@@ -85,10 +72,8 @@ void sort(Team * ptr,int a)
                 ptr[i].point += 3;
             else if((int)ptr[i].result[j] == (int)ptr[i].result[j+2])
                 ++ptr[i].point;
-
-
         }
-       // cout << ptr[i].name << "  " <<ptr[i].point << endl;
+       
     }
     for(int i = 0 ; i < a -1 ; i++ )
     {
@@ -102,10 +87,6 @@ void sort(Team * ptr,int a)
             }
         }
     }
-    for (int i = 0; i < a; i++)
-     {
-	 	 cout << ptr[i].name << "  " <<ptr[i].point << endl;
- 	}
  }
  
  void out(Team * ptr, int a)
@@ -114,7 +95,7 @@ void sort(Team * ptr,int a)
     fout.open("results.csv", ios_base::out);
     for (int g = 0; g < a; g++)
      {
-	 	fout << ptr[g].name << "," <<ptr[g].point << endl;
+     	fout << ptr[g].name << "," <<ptr[g].point << endl;
  	 }
 	fout.close();
 }
