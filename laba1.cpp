@@ -1,11 +1,9 @@
-/*
- * by Andrey and Slavick
- */
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include <cassert>
 
 using namespace std;
 
@@ -15,26 +13,49 @@ struct Team
     string result;
     int point;
 };
+void Delete_Empty_Line ();
 int  input_count();
 void sort(Team * ,int);
 Team* input(int);
-void out(Team * ptr, int a);
+void out(Team * ptr, int count);
 int main(int argc, char *argv[])
 {
+    Delete_Empty_Line ();
 	int count = input_count();
     Team * ptr = input(count);
     sort(ptr, count);
 	out(ptr, count);
     return 0;
+    
+}
+void Delete_Empty_Line (void)
+{
+    ifstream FileInput ("premier_league.csv", ifstream::in);
+    ofstream FileOutput ("premier_league1.csv", ofstream::out);
+    assert(FileInput);
+    assert(FileOutput);
+ 
+    string String_Of_File;
+    while (FileInput)
+    {
+        getline(FileInput, String_Of_File);
+        if (!String_Of_File.empty())
+        {
+            FileOutput << String_Of_File;
+            FileOutput << endl;
+        }   
+    }
+    FileInput.close();
+    FileOutput.close();
 }
 
 int input_count()
 {
     int lines = 0;
     char s;
-    FILE *fp = fopen("premier_league.csv","r");
-    while((s=fgetc(fp))!=EOF)
-    {
+    FILE *fp = fopen("premier_league1.csv","r");
+    while((s=getc(fp))!=EOF)
+    {        
         if(s == '\n')
         lines++;
     }
@@ -44,11 +65,11 @@ int input_count()
 
 Team* input(int count)
 {
-    ifstream f("premier_league.csv");
-    int a;
-    char  b;
-    f >> a;f >>b;
-    Team *ptr = new Team[a];
+    ifstream f("premier_league1.csv");
+    int* a = new int ;
+    char*  b = new char ;
+    f >> *a;f >>*b;
+    Team *ptr = new Team[count];
 
     for(int i = 0; i < count; ++i)
     {
@@ -58,13 +79,14 @@ Team* input(int count)
         getline(f,ptr[i].result, '\n');
         
     }
+    delete a; delete b;
     return ptr;
 }
 
-void sort(Team * ptr,int a)
+void sort(Team * ptr,int count)
 {
     int match = 10;
-    for(int i = 0; i < a; ++i)
+    for(int i = 0; i < count; ++i)
     {
         for(int j = 0; j < 40 ; j += 4)
         {
@@ -75,9 +97,9 @@ void sort(Team * ptr,int a)
         }
        
     }
-    for(int i = 0 ; i < a -1 ; i++ )
+    for(int i = 0 ; i < count -1 ; i++ )
     {
-        for( int j = 0; j < a-i-1; j++)
+        for( int j = 0; j < count-i-1; j++)
         {
             if( ptr[j].point < ptr[j+1].point)
             {
@@ -89,11 +111,11 @@ void sort(Team * ptr,int a)
     }
  }
  
- void out(Team * ptr, int a)
+ void out(Team * ptr, int count)
  {
 	ofstream fout;
     fout.open("results.csv", ios_base::out);
-    for (int g = 0; g < a; g++)
+    for (int g = 0; g < count; g++)
      {
      	fout << ptr[g].name << "," <<ptr[g].point << endl;
  	 }
